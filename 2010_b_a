@@ -1,0 +1,74 @@
+ //question 1
+ 
+#include <stdlib.h>
+#include <stdio.h>
+
+#define T 5
+
+typedef struct
+{
+    int i, j, sum;
+} triad;
+
+int indexMatrix(int arr[][10], int coll, int row, triad** num);
+
+int main()
+{
+    int i = 0, j = 0;
+    int b = 3;
+
+    int arr[T][T];
+    for (i = 0; i < T; i++)
+    {
+        for (j = 0; j < T; j++)
+        {
+            arr[i][j] = b + i - 2;
+        }
+    }
+
+    triad numbers_arr = { 0, 0, 0 };
+    int newArr = indexMatrix(arr, T, T, &numbers_arr);
+    printf("%d", newArr);
+
+    return 0;
+}
+
+int indexMatrix(int arr[][10], int coll, int row, triad** num)
+{
+    int i, j, count = 0;
+
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < coll; j++)
+        {
+            if (i + j == arr[i][j])
+            {
+                count++;
+            }
+        }
+    }
+
+    if (!count)
+    {
+        *num = NULL;
+        return count;
+    }
+
+    *num = calloc(count, sizeof(triad));
+    count = 0;
+
+    for (i = 0; i < row; i++)
+    {
+        for (j = 0; j < coll; j++)
+        {
+            if (i + j == arr[i][j])
+            {
+              (*num)[count].i = i;
+              (*num)[count].j = j;
+              (*num)[count].sum = arr[i][j];
+                count++;
+            }
+        }
+    }
+    return count;
+}
