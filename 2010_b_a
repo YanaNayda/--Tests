@@ -72,3 +72,54 @@ int indexMatrix(int arr[][10], int coll, int row, triad** num)
     }
     return count;
 }
+/////////////////////////////////////////////////////////////////qestion2
+
+
+#include <stdlib.h>
+#include <stdio.h>;
+#include<string.h>
+#include <ctype.h>
+
+
+void changeStr(char* str);
+
+int main() {
+	char str[] = "akjshd++2r2";
+	changeStr(&str);
+	printf("%s",str);
+}
+
+
+void changeStr(char *str) {
+	int i;
+	char t;
+	char* temp;
+	int count = 0; 
+	temp=malloc(strlen(str) + 1);
+
+	strcpy_s(temp,strlen(str)*8+8,str);
+	if (temp)
+		printf("hi");
+
+	for (i = 0; temp[i] != '\0'; i++) {
+
+		if (isalpha(temp[i])) {
+			if (islower(temp[i]))
+				str[count] = toupper(temp[i]);
+			else
+				str[count] = tolower(temp[i]);
+			count++;
+		}
+		else if (isdigit(temp[i])) {
+			t = 0;
+			for (t = '1'; t <= temp[i]; t++) {
+				str[count] = t;
+				count++;
+			}
+		}
+
+	}
+	//free(temp);
+	str[count] = '\0';
+}
+
