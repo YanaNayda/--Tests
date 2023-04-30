@@ -128,4 +128,15 @@ Item* listSorted(int *arr, int size) {
 
  }
 
+/////////////////////////////////question 5 (bonus)?
+#include <stdlib.h>
+#include <stdio.h>
 
+int main() {
+	printf("%d",'&'&&'&');
+ }
+ 
+ answer : 1
+ 
+ 
+ 
