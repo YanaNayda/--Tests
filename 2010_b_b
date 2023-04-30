@@ -36,3 +36,96 @@ int newMatr(int *arr,int size) {
 	//free(tempCol);
 	return matCol;
 }
+
+/////////////////////////////////////////////////////question3 (not working)
+
+#include <stdlib.h>
+#include <stdio.h>
+
+
+//void addNewItem(Item* list, int num);
+//Item* listSorted(int* arr, int size);
+
+
+typedef struct item {
+	int date;
+	struct item* next;
+}Item; 
+
+int main() {
+	int size = 4;
+	int arr[] = { 9,5,2,4 };
+	int i = 0;
+	Item* newList;
+    newList= listSorted( arr, size);
+
+	Item* current = newList;
+	while (current != NULL) {
+		printf("%d ", current->date);
+		current = current->next;
+	}
+	printf("\n");
+
+	return 0;
+}
+
+
+
+void addNewItem(Item* list,int num) {
+	Item *pointerF, *pointerS ,*temp; 
+	int i; 
+	int tempDate; 
+
+	pointerF = list; 
+	pointerS = list->next;
+
+	if (pointerF->date <= num && pointerF->next != NULL) {
+		while (pointerF->date < num && pointerS->date < num) {
+			pointerF++;
+			pointerS++;
+			if (pointerS->date > num) {
+				temp= (Item* )malloc(sizeof(Item));
+				temp->date = num;
+				temp->next = pointerS;
+				pointerF->next = temp;
+				break;
+			}
+		}
+	}
+	else if (pointerF->date >= num) {
+		temp = (Item*)malloc(sizeof(Item));
+		temp->date = num;
+		temp->next = pointerF;
+		list = temp;
+	}
+
+	else if ((list->date) <= num && list->next == NULL) 
+	{
+		temp = (Item*)malloc(sizeof(Item));
+		temp->date = num;
+		temp->next = NULL;
+		pointerF->next = temp;
+	
+	}
+}
+
+
+Item* listSorted(int *arr, int size) {
+	Item* lastItem=NULL, *tempItem=NULL, *list; 
+	int i; 
+	list = (Item*)malloc(sizeof(Item));
+	tempItem = list; 
+
+	list->date = arr[0];
+	list->next = NULL;
+
+	for (i = 0; i < size; i++) {
+
+		addNewItem(tempItem,arr[i]);
+		tempItem = list;
+	}
+	return  list;
+
+ }
+
+
