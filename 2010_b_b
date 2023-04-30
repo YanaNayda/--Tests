@@ -1,0 +1,38 @@
+//////////////////////////////////////////////question1
+
+#include <stdlib.h>
+#include <stdio.h>;
+
+
+//int* newMatrix(arr, size);
+
+int main() {
+
+	int n = 6;
+	int arr[] = { 4,2,1,3,5,8 };
+	int* adress= newMatr(arr, n);
+	
+}
+
+int newMatr(int *arr,int size) {
+	int** matCol;
+	int** tempCol;
+	int i,j; 
+	int multiTwo = 1;
+	matCol =(int**) malloc(size, sizeof(int));
+
+	tempCol = matCol;
+	for (i = 0; i < size; i++) {
+		tempCol[i] =(int*)calloc(arr[i] ,sizeof(int));
+		multiTwo = 1;
+		for (j = 0; j < arr[i]; j++) {
+
+			tempCol[i][j] = multiTwo;
+			multiTwo *= 2;
+			printf("%d ", tempCol[i][j]);
+		}
+		printf("\n");
+	}
+	//free(tempCol);
+	return matCol;
+}
