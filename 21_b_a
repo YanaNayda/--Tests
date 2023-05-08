@@ -1,1 +1,32 @@
+///////////////////////////////////////////////////question1
+int  CheckArrMarge(name *nameArr, int n ) {
+	int i; 
+	int k1 = 1, k2=1;
+	for (i = 0; i < n-1; i++)
+	{
+		name* let1 = &nameArr[i].first_name;
+		name* let2 = &nameArr[i+1].first_name;
+		if (let1 < let2) {
+			k1 = 0;
+			break; 
+		}
+	
+	}
 
+	for (i = 0; i < n - 1; i++)
+	{
+		name* let1 = &nameArr[i].last_name;
+		name* let2 = &nameArr[i + 1].last_name;
+		if (let1 < let2) {
+			k2 = 0;
+			break;
+		}
+	}
+	if (k1 == 0 && k2 == 0)
+		return 0;
+	if (k2 == 1 && k1 == 0)
+		return 2;
+	else
+		return 1;
+
+}
